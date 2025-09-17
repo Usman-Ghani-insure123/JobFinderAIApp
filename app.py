@@ -12,7 +12,7 @@ search_job = True
 st.set_page_config(
     page_title="Job Finder Assistant",
     page_icon=str(ICON_PATH),  # path to your logo file
-    layout="wide"
+    layout="centered"
 )
 
 # then apply sidebar CSS + render

@@ -10,6 +10,12 @@ def inject_sidebar_css():
     import streamlit as st
     st.markdown("""
     <style>
+      /* --- Sidebar width --- */
+      section[data-testid="stSidebar"] {
+        min-width: 370px;
+        max-width: 390px;
+      }
+
       /* --- Scope ONLY to Streamlit's sidebar container --- */
       section[data-testid="stSidebar"] > div {
         background: linear-gradient(180deg, #1E1B4B 0%, #312E81 100%);
@@ -36,36 +42,43 @@ def inject_sidebar_css():
 
 def render_sidebar():
     import streamlit as st
-    # Resolve absolute path to the logo (works locally & on Streamlit Cloud)
-    LOGO_PATH = Path(__file__).parent / "assets" / "jobfinder_logo.png"   # <-- adjust name if needed
+    from pathlib import Path
+
+    LOGO_PATH = Path(__file__).parent / "assets" / "jobfinder_logo.png"
 
     with st.sidebar:
-        # Use st.image (does its own static serving); shows even if HTML paths fail
+        # Logo
         st.image(str(LOGO_PATH), use_container_width=True)
 
+        # Title & tagline
         st.markdown(
             """
             <div id="jf-sidebar">
               <div class="jf-title">JobFinder</div>
-              <div class="jf-subtitle">AI bot that searches jobs & tailors your CV</div>
+              <div class="jf-subtitle">Your AI assistant for smarter job applications</div>
+
               <hr class="jf-divider"/>
+
               <div class="jf-section-title">How it works</div>
               <ol class="jf-list">
-                <li><b>Upload</b> your CV (PDF/DOCX)</li>
-                <li>Select <b>Country</b> and <b>City</b></li>
-                <li>JobFinder <b>extracts skills</b> with AI</li>
-                <li>We <b>find matching jobs</b> for you</li>
-                <li>Pick a job → get <b>Tailored CV + Cover Letter</b></li>
+                <li>📄 <b>Upload</b> your CV (PDF or DOCX)</li>
+                <li>🌍 Select your <b>Preferred Country</b> and <b>City</b></li>
+                <li>🤖 AI will <b>analyze your skills</b></li>
+                <li>💼 Discover <b>top matching jobs</b></li>
+                <li>✨ Get a <b>tailored CV & Cover Letter</b> instantly</li>
               </ol>
+
               <hr class="jf-divider"/>
-              <div class="jf-section-title">Tips</div>
+
+              <div class="jf-section-title">Tips for Best Results</div>
               <ul class="jf-bullets">
-                <li>Use a recent CV for best matching</li>
-                <li>Try multiple cities to widen results</li>
-                <li>Fine-tune documents before downloading</li>
+                <li>📌 Use an up-to-date CV for accurate skill extraction</li>
+                <li>🌆 Try different locations to explore more opportunities</li>
+                <li>✏️ Review and fine-tune your CV & cover letter before sending</li>
               </ul>
+
               <hr class="jf-divider"/>
-              <div style="font-size:12px; opacity:.9">🔒 Your files are processed securely.</div>
+              <div style="font-size:12px; opacity:.9">🔒 Your CV is processed securely. Nothing is shared.</div>
             </div>
             """,
             unsafe_allow_html=True
