@@ -2,10 +2,22 @@
 import streamlit as st
 from agents import run_agents
 import random
+import sidebar  as sb
+from pathlib import Path
+ICON_PATH = Path(__file__).parent / "assets" / "jobfinder_logo_page.png"
 
 search_job = True
-st.set_page_config(page_title="Job Finder Assistant", page_icon="💼")
+# st.set_page_config(page_title="Job Finder Assistant", page_icon="💼")
 
+st.set_page_config(
+    page_title="Job Finder Assistant",
+    page_icon=str(ICON_PATH),  # path to your logo file
+    layout="wide"
+)
+
+# then apply sidebar CSS + render
+sb.inject_sidebar_css()
+sb.render_sidebar()
 
 # Session State Initialization
 if "stage" not in st.session_state:
