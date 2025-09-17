@@ -10,20 +10,23 @@ def inject_sidebar_css():
     import streamlit as st
     st.markdown("""
     <style>
-      /* --- Sidebar width --- */
-      section[data-testid="stSidebar"] {
-        min-width: 370px;
-        max-width: 390px;
+      /* Sidebar width only when expanded */
+      section[data-testid="stSidebar"][aria-expanded="true"] {
+        min-width: 390px !important;
+        max-width: 370px !important;
       }
 
-      /* --- Scope ONLY to Streamlit's sidebar container --- */
+      /* Sidebar background */
       section[data-testid="stSidebar"] > div {
         background: linear-gradient(180deg, #1E1B4B 0%, #312E81 100%);
         border-right: 1px solid rgba(255,255,255,0.08);
       }
 
-      /* Everything inside our wrapper is scoped */
-      #jf-sidebar { color: #E5E7EB; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial; }
+      /* Content inside sidebar */
+      #jf-sidebar { 
+        color: #E5E7EB; 
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial; 
+      }
       #jf-sidebar .jf-title { font-weight: 800; font-size: 24px; margin: 6px 0 2px; }
       #jf-sidebar .jf-subtitle { color: #CBD5E1; font-size: 13.5px; margin-bottom: 10px; }
 
